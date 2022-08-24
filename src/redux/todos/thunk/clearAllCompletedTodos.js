@@ -1,11 +1,11 @@
-import { allCompleted } from "../actions";
+import { clearCompleted } from "../actions";
 
-const completeAllTodos = () => {
+const clearAllCompletedTodos = () => {
     return async (dispatch) => {
         const response = await fetch(`https://sleepy-refuge-75797.herokuapp.com/api/todos/`, {
             method: "PATCH",
             body: JSON.stringify({
-                completed: true,
+                completed: false,
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -13,9 +13,8 @@ const completeAllTodos = () => {
         });
         const todos = await response.json();
 
-        dispatch(allCompleted());
-        // dispatch(loaded(todos));
+        dispatch(clearCompleted());
     };
 };
 
-export default completeAllTodos;
+export default clearAllCompletedTodos;
